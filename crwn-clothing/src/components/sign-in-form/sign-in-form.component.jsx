@@ -26,11 +26,11 @@ const SignInForm = () => {
 
   const logEmailUser = async (event) => {
     event.preventDefault()
-    const { user } = await signInWithEmail(email, password);
+
 
     if (email && password) {
       try {
-        await createUserDocumentFromAuth(user);
+        const { user } = await signInWithEmail(email, password);
         resetFormFields()
       } catch (error) {
         switch (error.code) {
@@ -50,12 +50,7 @@ const SignInForm = () => {
   }
 
   const logGoogleUser = async () => {
-    const { user } = await signInWithGooglePopup();
-    try {
-      createUserDocumentFromAuth(user);
-    } catch (error) {
-      console.log('google auth error: ', error);
-    }
+    await signInWithGooglePopup();
   }
 
   return (

@@ -32,11 +32,9 @@ const SignUpForm = () => {
     // see if we've authenticated that user with email/pw
     try {
       const { user } = await createAuthUserWithEmailAndPassword(email, password);
-
       // create a userdoc from what that returns
       const newUser = await createUserDocumentFromAuth(user, { displayName })
       console.log('newUser: ', newUser);
-
       resetFormFields();
 
     } catch (error) {
@@ -47,13 +45,10 @@ const SignUpForm = () => {
       }
 
     }
-
-
   }
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
     setFormFields({ ...formFields, [name]: value })
   }
 
